@@ -6,27 +6,78 @@ Supports **JSON**, **YAML**, **TOML**, and **XML**.
 
 ```
 ┌──────────────────────┬───┬──────────────────────┐
-│   Object Source      │ █ │   Tree View           │
-│   (raw editor)       │ │ │   (navigator)         │
-│                      │ │ │                       │
+│   Object Source      │ █ │   Tree View          │
+│   (raw editor)       │ │ │   (navigator)        │
+│                      │ │ │                      │
 └──────────────────────┴───┴──────────────────────┘
-│ [MODE]  filepath *  ⚠ parse error  hints         │
-└───────────────────────────────────────────────────┘
+│ [MODE]  filepath *  ⚠ parse error  hints        │
+└─────────────────────────────────────────────────┘
 ```
 
 The center strip is a unified scrollbar that moves both panes simultaneously.
 
 ---
 
-## Installation
+## Prerequisites
 
-Requires Rust 1.75+ (stable).
+**Rust toolchain** — `oe` is written in Rust and compiled from source. If you
+don't have Rust installed:
 
 ```bash
-git clone <repo>
+# Install rustup (the Rust toolchain manager)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Follow the on-screen prompts, then reload your shell
+source "$HOME/.cargo/env"
+
+# Verify the install
+rustc --version   # should print rustc 1.75.0 or newer
+cargo --version
+```
+
+> **Windows**: use the installer from [rustup.rs](https://rustup.rs) instead of
+> the curl command above.
+
+No other system dependencies are required. All Rust crates are downloaded
+automatically by Cargo during the build.
+
+---
+
+## Installation
+
+### Clone and build
+
+```bash
+git clone https://github.com/your-username/JSON-Editor.git
 cd JSON-Editor
+
+# Release build (optimised, ~2–3 MB binary)
 cargo build --release
-# Binary is at target/release/oe
+```
+
+The compiled binary lands at `target/release/oe`.
+
+### Run without installing
+
+```bash
+./target/release/oe path/to/file.json
+```
+
+### Install system-wide (optional)
+
+```bash
+# Copies the binary to ~/.cargo/bin, which is already on your PATH if you
+# installed Rust with rustup
+cargo install --path .
+
+# Then run from anywhere
+oe path/to/file.json
+```
+
+### Development build (faster compile, slower runtime)
+
+```bash
+cargo run -- path/to/file.json
 ```
 
 ---
@@ -40,8 +91,49 @@ oe config.toml          # open a TOML file
 oe                      # start with an empty document
 ```
 
+`oe` opens in your terminal and takes over the full screen. Press `Ctrl+Q` to
+quit at any time.
+
+### The two panes
+
+| Pane | Name | What it shows |
+|------|------|---------------|
+| Left | **Object Source** | The raw file text — fully editable |
+| Right | **Tree View** | A navigable, collapsible tree of the parsed structure |
+
+Use `Tab` to move keyboard focus between them. The active pane has a **green
+border**; the inactive pane is dimmed.
+
+### Typical workflow
+
+1. **Open a file** — pass it on the command line, or press `Ctrl+O` inside
+   the editor to browse the filesystem.
+2. **Navigate** — use the Tree View (`Tab` to focus it) to explore the
+   structure. Arrow keys move through nodes; `Space` collapses/expands
+   objects and arrays.
+3. **Edit** — press `Tab` to switch to Object Source and `i` to start typing,
+   or use the Tree View commands (`Enter` to edit a value, `a` to add a key,
+   `d` to delete, `r` to rename) for structured edits.
+4. **Search** — press `/` in the Tree View to filter nodes by key or value.
+5. **Save** — `Ctrl+S` writes to disk. A `*` in the status bar means there
+   are unsaved changes.
+
+### Status bar
+
+The single line at the bottom of the screen shows:
+
+```
+[MODE]  filename.json *  ⚠ parse error message   hint text
+```
+
+- **`[MODE]`** — current interaction mode (`NORMAL`, `INSERT`, `SEARCH`, etc.)
+- **filename** + **`*`** — open file and unsaved-changes indicator
+- **`⚠ …`** — parse error if the raw text is not valid (press `Ctrl+E` to jump
+  to the error line)
+- **hint text** — context-sensitive key reminders for the current mode
+
 Files are auto-detected by extension. On open, the document is parsed and
-pretty-printed using a canonical 2-space indent. Paste detection also tries
+pretty-printed with a canonical 2-space indent. Paste detection also tries
 all supported formats automatically.
 
 ---
