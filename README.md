@@ -48,8 +48,8 @@ automatically by Cargo during the build.
 ### Clone and build
 
 ```bash
-git clone https://github.com/your-username/JSON-Editor.git
-cd JSON-Editor
+git clone https://github.com/tekanic/oe.git
+cd oe
 
 # Release build (optimised, ~2–3 MB binary)
 cargo build --release
@@ -129,7 +129,7 @@ The single line at the bottom of the screen shows:
 - **`[MODE]`** — current interaction mode (`NORMAL`, `INSERT`, `SEARCH`, etc.)
 - **filename** + **`*`** — open file and unsaved-changes indicator
 - **`⚠ …`** — parse error if the raw text is not valid (press `Ctrl+E` to jump
-  to the error line)
+to the error line)
 - **hint text** — context-sensitive key reminders for the current mode
 
 Files are auto-detected by extension. On open, the document is parsed and
@@ -336,4 +336,4 @@ src/
 | `roxmltree`    | XML parsing (read-only)                  |
 | `serde`        | Derive macros for format codecs          |
 | `arboard`      | Clipboard read/write                     |
-| `color-eyre`   | Pretty error reporting                   |
+| `color-eyre`   | Pretty error reporting                   
