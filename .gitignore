@@ -1,0 +1,42 @@
+# ── Rust ──────────────────────────────────────────────────────────────────────
+# Build output
+/target/
+
+# Cargo.lock is kept for binary crates (intentional)
+
+# ── Editor / IDE ──────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
+
+# ── Linux ─────────────────────────────────────────────────────────────────────
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ── Windows ───────────────────────────────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ── Environment / secrets ─────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── App-generated output files ────────────────────────────────────────────────
+# Default save targets produced when no filename is specified (see save_file())
+output.json
+output.yaml
+output.toml
+output.xml
