@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="960" height="580">
+  <defs>
+    <style>
+      .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace; font-size: 12.5px; }
+      .key  { fill: #e3b341; }
+      .str  { fill: #7ee787; }
+      .num  { fill: #79c0ff; }
+      .bool { fill: #d2a8ff; }
+      .brk  { fill: #e6edf3; }
+      .text { fill: #e6edf3; }
+      .dim  { fill: #484f58; }
+      .lnum { fill: #3b424e; }
+      .mode { fill: #e6edf3; font-weight: bold; }
+      .cyan { fill: #79c0ff; }
+      .hint { fill: #484f58; }
+      .dir  { fill: #79c0ff; }
+      .file { fill: #7ee787; }
+    </style>
+  </defs>
+
+  <!-- Window frame -->
+  <rect width="960" height="580" rx="10" fill="#0d1117"/>
+  <rect width="960" height="40" rx="10" fill="#161b22"/>
+  <rect y="30" width="960" height="10" fill="#161b22"/>
+  <circle cx="22" cy="20" r="6.5" fill="#ff5f56"/>
+  <circle cx="44" cy="20" r="6.5" fill="#ffbd2e"/>
+  <circle cx="66" cy="20" r="6.5" fill="#27c93f"/>
+  <text x="480" y="26" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#484f58">oe — [new file]</text>
+
+  <!-- Terminal bg -->
+  <rect x="0" y="40" width="960" height="540" fill="#0d1117"/>
+
+  <!-- Background panes (dimmed behind overlay) -->
+  <rect x="2"   y="41" width="452" height="517" fill="none" stroke="#30363d" stroke-width="1.5" opacity="0.4"/>
+  <rect x="482" y="41" width="476" height="517" fill="none" stroke="#30363d" stroke-width="1.5" opacity="0.4"/>
+  <text x="11"  y="56" class="mono dim" opacity="0.4">Object Source</text>
+  <text x="491" y="56" class="mono dim" opacity="0.4">Tree View</text>
+  <!-- hint text in tree pane -->
+  <text x="680" y="290" class="mono dim" opacity="0.3" text-anchor="middle">No file open.</text>
+  <text x="680" y="318" class="mono dim" opacity="0.3" text-anchor="middle">Ctrl+O  open a file</text>
+
+  <!-- Scrollbar (dimmed) -->
+  <text x="458" y="290" class="mono dim" opacity="0.4"> │ </text>
+
+  <!-- ── File picker overlay ─────────────────────────── -->
+  <!-- Overlay backdrop -->
+  <rect x="144" y="100" width="672" height="360" fill="#0d1117"/>
+
+  <!-- Picker outer border (bold white) -->
+  <rect x="144" y="100" width="672" height="360" fill="none" stroke="#e6edf3" stroke-width="1.5"/>
+
+  <!-- Picker title in border -->
+  <text x="155" y="115" class="mono text" font-weight="bold"> Open File — ↑↓:navigate  Enter:open/enter  Esc:cancel </text>
+
+  <!-- Current directory breadcrumb -->
+  <text x="155" y="138" class="mono cyan" font-weight="bold">/Users/mm/Development/</text>
+
+  <!-- Separator line (implied by spacing) -->
+  <line x1="145" y1="144" x2="815" y2="144" stroke="#30363d" stroke-width="1"/>
+
+  <!-- File picker entries -->
+  <!-- ".." parent -->
+  <text x="155" y="163" class="mono dim"> ▶ </text>
+  <text x="178" y="163" class="mono dir">..</text>
+
+  <!-- directories -->
+  <text x="155" y="183" class="mono dim"> ▶ </text>
+  <text x="178" y="183" class="mono dir">my-project/</text>
+
+  <text x="155" y="203" class="mono dim"> ▶ </text>
+  <text x="178" y="203" class="mono dir">Object-Editor/</text>
+
+  <text x="155" y="223" class="mono dim"> ▶ </text>
+  <text x="178" y="223" class="mono dir">configs/</text>
+
+  <!-- selected file (reversed) -->
+  <rect x="145" y="228" width="671" height="20" fill="#1f3a5f"/>
+  <text x="155" y="243" class="mono dim">   </text>
+  <text x="178" y="243" class="mono file">config.json</text>
+
+  <!-- more files -->
+  <text x="155" y="263" class="mono dim">   </text>
+  <text x="178" y="263" class="mono file">data.json</text>
+
+  <text x="155" y="283" class="mono dim">   </text>
+  <text x="178" y="283" class="mono file">package.json</text>
+
+  <text x="155" y="303" class="mono dim">   </text>
+  <text x="178" y="303" class="mono file">settings.yaml</text>
+
+  <text x="155" y="323" class="mono dim">   </text>
+  <text x="178" y="323" class="mono file">schema.toml</text>
+
+  <text x="155" y="343" class="mono dim">   </text>
+  <text x="178" y="343" class="mono file">service.xml</text>
+
+  <!-- Status bar: OPEN mode -->
+  <rect x="0" y="558" width="960" height="22" fill="#161b22"/>
+  <text x="4" y="574" class="mono mode">[OPEN]</text>
+  <text x="60" y="574" class="mono text">  config.json </text>
+  <text x="178" y="574" class="mono dim">(json)</text>
+  <text x="955" y="574" class="mono dim" text-anchor="end">↑↓:navigate  Enter:open  Esc:cancel</text>
+
+  <rect width="960" height="580" rx="10" fill="none" stroke="#30363d" stroke-width="1"/>
+</svg>

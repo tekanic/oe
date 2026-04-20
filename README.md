@@ -1,20 +1,82 @@
+<div align="center">
+
 # oe — Object Editor
 
-A dual-pane terminal editor for structured data, built with Rust + Ratatui.
+**A dual-pane terminal editor for structured data, built with Rust + Ratatui.**
 
-Supports **JSON**, **YAML**, **TOML**, and **XML**.
+![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange?logo=rust&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![JSON](https://img.shields.io/badge/JSON-%E2%9C%93-brightgreen)
+![YAML](https://img.shields.io/badge/YAML-%E2%9C%93-yellow)
+![TOML](https://img.shields.io/badge/TOML-%E2%9C%93-purple)
+![XML](https://img.shields.io/badge/XML-%E2%9C%93-cyan)
 
-```
-┌──────────────────────┬───┬──────────────────────┐
-│   Object Source      │ █ │   Tree View          │
-│   (raw editor)       │ │ │   (navigator)        │
-│                      │ │ │                      │
-└──────────────────────┴───┴──────────────────────┘
-│ [MODE]  filepath *  ⚠ parse error  hints        │
-└─────────────────────────────────────────────────┘
-```
+<br/>
+
+![oe animated demo](assets/demo-animated.svg)
+
+*Normal mode → Tree navigation → Live search → Insert mode with bidirectional sync*
+
+</div>
+
+---
+
+## What it is
+
+`oe` opens any JSON, YAML, TOML, or XML file and presents it in two synchronized panes side by side: the raw text on the left (fully editable), and a collapsible tree navigator on the right. Editing either pane immediately updates the other.
 
 The center strip is a unified scrollbar that moves both panes simultaneously.
+
+---
+
+## Screenshots
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+**Normal mode — raw pane focused**
+
+![Main view](assets/screenshot-main.svg)
+
+Full syntax highlighting with live tree sync. Green border = active pane.
+
+</td>
+<td align="center" width="50%">
+
+**Search mode**
+
+![Search mode](assets/screenshot-search.svg)
+
+Press `/` anywhere to filter the tree. Matching keys highlight in yellow; non-matching nodes dim.
+
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+
+**File picker (`Ctrl+O`)**
+
+![File picker](assets/screenshot-picker.svg)
+
+Filesystem browser overlay. Directories and supported files only; hidden files excluded.
+
+</td>
+<td align="center" width="50%">
+
+**Insert mode**
+
+Edit raw text directly or use tree commands (`Enter` to edit a value, `a` to add, `d` to delete). The tree re-parses 250 ms after the last keystroke.
+
+```
+[INSERT]  config.json *
+↑
+Esc:normal  Ctrl+Z:undo  Ctrl+S:save
+```
+
+</td>
+</tr>
+</table>
 
 ---
 

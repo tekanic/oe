@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="960" height="580">
+  <defs>
+    <style>
+      .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace; font-size: 12.5px; }
+      .key  { fill: #e3b341; }
+      .str  { fill: #7ee787; }
+      .num  { fill: #79c0ff; }
+      .bool { fill: #d2a8ff; }
+      .brk  { fill: #e6edf3; }
+      .text { fill: #e6edf3; }
+      .dim  { fill: #484f58; }
+      .lnum { fill: #3b424e; }
+      .mode { fill: #e6edf3; font-weight: bold; }
+      .cyan { fill: #79c0ff; }
+      .hint { fill: #484f58; }
+      .match{ fill: #e3b341; font-weight: bold; }
+      .dir  { fill: #79c0ff; }
+      .file { fill: #7ee787; }
+      .err  { fill: #ff7b72; }
+      .sel  { fill: #1f3a5f; }
+
+      /* ── Slide visibility ── */
+      /* 4 slides × 4s each + 0.5s fade = 18s total */
+      @keyframes s1 {
+        0%,5%    { opacity:1 }
+        22%,100% { opacity:0 }
+        95%      { opacity:0 }
+      }
+      @keyframes s2 {
+        0%,22%   { opacity:0 }
+        27%,47%  { opacity:1 }
+        52%,100% { opacity:0 }
+      }
+      @keyframes s3 {
+        0%,52%   { opacity:0 }
+        57%,72%  { opacity:1 }
+        77%,100% { opacity:0 }
+      }
+      @keyframes s4 {
+        0%,77%   { opacity:0 }
+        82%,95%  { opacity:1 }
+        100%     { opacity:0 }
+      }
+
+      #slide1 { animation: s1 18s ease-in-out infinite; }
+      #slide2 { animation: s2 18s ease-in-out infinite; }
+      #slide3 { animation: s3 18s ease-in-out infinite; }
+      #slide4 { animation: s4 18s ease-in-out infinite; }
+
+      /* ── Cursor blink ── */
+      @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+      .cursor { animation: blink 1s step-end infinite; }
+
+      /* ── Tree cursor step animation (slide 2) ── */
+      /* The selection rect steps down through rows */
+      @keyframes treeSel {
+        0%   { transform: translateY(0px);  }
+        20%  { transform: translateY(0px);  }
+        35%  { transform: translateY(20px); }
+        50%  { transform: translateY(20px); }
+        65%  { transform: translateY(40px); }
+        80%  { transform: translateY(40px); }
+        95%  { transform: translateY(60px); }
+        100% { transform: translateY(60px); }
+      }
+      #tree-sel-rect { animation: treeSel 18s step-end infinite; }
+
+      /* ── Typing animation for search (slide 3) ── */
+      @keyframes showH { 0%,57%{opacity:0} 60%,100%{opacity:1} }
+      @keyframes showO { 0%,60%{opacity:0} 63%,100%{opacity:1} }
+      @keyframes showS { 0%,63%{opacity:0} 66%,100%{opacity:1} }
+      @keyframes showT { 0%,66%{opacity:0} 69%,100%{opacity:1} }
+      #ch-h { animation: showH 18s linear infinite; }
+      #ch-o { animation: showO 18s linear infinite; }
+      #ch-s { animation: showS 18s linear infinite; }
+      #ch-t { animation: showT 18s linear infinite; }
+    </style>
+  </defs>
+
+  <!-- ══════════════════════════════════════════════════
+       STATIC SHELL (window chrome, always visible)
+  ════════════════════════════════════════════════════ -->
+  <rect width="960" height="580" rx="10" fill="#0d1117"/>
+  <rect width="960" height="40" rx="10" fill="#161b22"/>
+  <rect y="30" width="960" height="10" fill="#161b22"/>
+  <circle cx="22" cy="20" r="6.5" fill="#ff5f56"/>
+  <circle cx="44" cy="20" r="6.5" fill="#ffbd2e"/>
+  <circle cx="66" cy="20" r="6.5" fill="#27c93f"/>
+  <text x="480" y="26" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#484f58">oe — data/config.json</text>
+  <rect x="0" y="40" width="960" height="540" fill="#0d1117"/>
+  <rect width="960" height="580" rx="10" fill="none" stroke="#30363d" stroke-width="1"/>
+
+  <!-- scrollbar (always) -->
+  <text x="458" y="76"  class="mono dim"> │ </text>
+  <text x="458" y="96"  class="mono dim"> │ </text>
+  <text x="458" y="116" class="mono dim"> │ </text>
+  <text x="458" y="136" class="mono dim"> │ </text>
+  <text x="458" y="156" class="mono dim"> │ </text>
+  <text x="458" y="176" class="mono dim"> │ </text>
+  <text x="458" y="196" class="mono text">███</text>
+  <text x="458" y="216" class="mono dim"> │ </text>
+  <text x="458" y="236" class="mono dim"> │ </text>
+  <text x="458" y="256" class="mono dim"> │ </text>
+  <text x="458" y="276" class="mono dim"> │ </text>
+  <text x="458" y="296" class="mono dim"> │ </text>
+  <text x="458" y="316" class="mono dim"> │ </text>
+  <text x="458" y="336" class="mono dim"> │ </text>
+  <text x="458" y="356" class="mono dim"> │ </text>
+  <text x="458" y="376" class="mono dim"> │ </text>
+  <text x="458" y="396" class="mono dim"> │ </text>
+  <text x="458" y="416" class="mono dim"> │ </text>
+  <text x="458" y="436" class="mono dim"> │ </text>
+  <text x="458" y="456" class="mono dim"> │ </text>
+  <text x="458" y="476" class="mono dim"> │ </text>
+  <text x="458" y="496" class="mono dim"> │ </text>
+  <text x="458" y="516" class="mono dim"> │ </text>
+  <text x="458" y="536" class="mono dim"> │ </text>
+
+  <!-- static left pane content (always) -->
+  <g opacity="1">
+    <text x="8"  y="76"  class="mono lnum"> 1</text><text x="38" y="76"  class="mono brk">{</text>
+    <text x="8"  y="96"  class="mono lnum"> 2</text><text x="53" y="96"  class="mono key">"name"</text><text x="98" y="96" class="mono brk">: </text><text x="113" y="96" class="mono str">"my-api"</text><text x="173" y="96" class="mono brk">,</text>
+    <text x="8"  y="116" class="mono lnum"> 3</text><text x="53" y="116" class="mono key">"version"</text><text x="120" y="116" class="mono brk">: </text><text x="135" y="116" class="mono str">"2.1.0"</text><text x="183" y="116" class="mono brk">,</text>
+    <text x="8"  y="136" class="mono lnum"> 4</text><text x="53" y="136" class="mono key">"description"</text><text x="150" y="136" class="mono brk">: </text><text x="165" y="136" class="mono str">"REST API service"</text><text x="293" y="136" class="mono brk">,</text>
+    <text x="8"  y="156" class="mono lnum"> 5</text><text x="53" y="156" class="mono key">"database"</text><text x="128" y="156" class="mono brk">: {</text>
+    <text x="8"  y="176" class="mono lnum"> 6</text><text x="68" y="176" class="mono key">"host"</text><text x="106" y="176" class="mono brk">: </text><text x="121" y="176" class="mono str">"localhost"</text><text x="196" y="176" class="mono brk">,</text>
+    <text x="8"  y="196" class="mono lnum"> 7</text><text x="68" y="196" class="mono key">"port"</text><text x="106" y="196" class="mono brk">: </text><text x="121" y="196" class="mono num">5432</text><text x="151" y="196" class="mono brk">,</text>
+    <text x="8"  y="216" class="mono lnum"> 8</text><text x="68" y="216" class="mono key">"ssl"</text><text x="99"  y="216" class="mono brk">: </text><text x="114" y="216" class="mono bool">true</text><text x="144" y="216" class="mono brk">,</text>
+    <text x="8"  y="236" class="mono lnum"> 9</text><text x="68" y="236" class="mono key">"pool"</text><text x="106" y="236" class="mono brk">: </text><text x="121" y="236" class="mono num">10</text>
+    <text x="8"  y="256" class="mono lnum">10</text><text x="38" y="256" class="mono brk">  },</text>
+    <text x="8"  y="276" class="mono lnum">11</text><text x="53" y="276" class="mono key">"features"</text><text x="128" y="276" class="mono brk">: [</text>
+    <text x="8"  y="296" class="mono lnum">12</text><text x="68" y="296" class="mono str">"auth"</text><text x="106" y="296" class="mono brk">,</text>
+    <text x="8"  y="316" class="mono lnum">13</text><text x="68" y="316" class="mono str">"cache"</text><text x="113" y="316" class="mono brk">,</text>
+    <text x="8"  y="336" class="mono lnum">14</text><text x="68" y="336" class="mono str">"metrics"</text>
+    <text x="8"  y="356" class="mono lnum">15</text><text x="38" y="356" class="mono brk">  ],</text>
+    <text x="8"  y="376" class="mono lnum">16</text><text x="53" y="376" class="mono key">"timeout"</text><text x="128" y="376" class="mono brk">: </text><text x="143" y="376" class="mono num">30</text><text x="158" y="376" class="mono brk">,</text>
+    <text x="8"  y="396" class="mono lnum">17</text><text x="53" y="396" class="mono key">"debug"</text><text x="98"  y="396" class="mono brk">: </text><text x="113" y="396" class="mono bool">false</text>
+    <text x="8"  y="416" class="mono lnum">18</text><text x="38" y="416" class="mono brk">}</text>
+  </g>
+
+  <!-- ══════════════════════════════════════════════════
+       SLIDE 1 — NORMAL mode, raw pane focused
+  ════════════════════════════════════════════════════ -->
+  <g id="slide1">
+    <!-- Left pane border: GREEN (focused) -->
+    <rect x="2" y="41" width="452" height="517" fill="none" stroke="#2ea043" stroke-width="1.5"/>
+    <text x="11"  y="56" class="mono mode" fill="#2ea043">Object Source</text>
+    <text x="398" y="56" class="mono cyan" font-weight="bold"> JSON </text>
+    <!-- Right pane border: gray -->
+    <rect x="482" y="41" width="476" height="517" fill="none" stroke="#30363d" stroke-width="1.5"/>
+    <text x="491" y="56" class="mono dim">Tree View</text>
+    <!-- Cursor on line 7 -->
+    <rect x="38" y="182" width="415" height="16" fill="#0f2d4a" opacity="0.6"/>
+    <!-- Status bar -->
+    <rect x="0" y="558" width="960" height="22" fill="#161b22"/>
+    <text x="4" y="574" class="mono mode">[NORMAL]</text>
+    <text x="76" y="574" class="mono text">  data/config.json</text>
+    <text x="955" y="574" class="mono dim" text-anchor="end">i:edit  Tab:switch  /:search  Ctrl+O:open  Ctrl+S:save  ?:about</text>
+    <!-- Tree pane content (unfocused) -->
+    <text x="491" y="76"  class="mono brk">▼ </text><text x="506" y="76"  class="mono dim">(root)</text><text x="554" y="76" class="mono brk">            {</text><text x="652" y="76" class="mono hint">  (7 keys)</text>
+    <text x="491" y="96"  class="mono brk">    </text><text x="521" y="96"  class="mono key">name</text><text x="551" y="96"  class="mono brk">:             </text><text x="655" y="96"  class="mono str">"my-api"</text>
+    <text x="491" y="116" class="mono brk">    </text><text x="521" y="116" class="mono key">version</text><text x="575" y="116" class="mono brk">:          </text><text x="651" y="116" class="mono str">"2.1.0"</text>
+    <text x="491" y="136" class="mono brk">    </text><text x="521" y="136" class="mono key">description</text><text x="607" y="136" class="mono brk">:     </text><text x="645" y="136" class="mono str">"REST API"</text>
+    <text x="491" y="156" class="mono brk">  ▼ </text><text x="521" y="156" class="mono key">database</text><text x="583" y="156" class="mono brk">:         {</text><text x="658" y="156" class="mono hint">  (4 keys)</text>
+    <text x="491" y="176" class="mono brk">      </text><text x="537" y="176" class="mono key">host</text><text x="567" y="176" class="mono brk">:         </text><text x="643" y="176" class="mono str">"localhost"</text>
+    <text x="491" y="196" class="mono brk">      </text><text x="537" y="196" class="mono key">port</text><text x="567" y="196" class="mono brk">:         </text><text x="643" y="196" class="mono num">5432</text>
+    <text x="491" y="216" class="mono brk">      </text><text x="537" y="216" class="mono key">ssl</text><text x="560" y="216" class="mono brk">:         </text><text x="636" y="216" class="mono bool">true</text>
+    <text x="491" y="236" class="mono brk">      </text><text x="537" y="236" class="mono key">pool</text><text x="567" y="236" class="mono brk">:         </text><text x="643" y="236" class="mono num">10</text>
+    <text x="491" y="256" class="mono brk">  ▼ </text><text x="521" y="256" class="mono key">features</text><text x="583" y="256" class="mono brk">:         [</text><text x="658" y="256" class="mono hint">  (3 items)</text>
+    <text x="491" y="276" class="mono brk">      </text><text x="537" y="276" class="mono num">[0]</text><text x="560" y="276" class="mono brk">:         </text><text x="636" y="276" class="mono str">"auth"</text>
+    <text x="491" y="296" class="mono brk">      </text><text x="537" y="296" class="mono num">[1]</text><text x="560" y="296" class="mono brk">:         </text><text x="636" y="296" class="mono str">"cache"</text>
+    <text x="491" y="316" class="mono brk">      </text><text x="537" y="316" class="mono num">[2]</text><text x="560" y="316" class="mono brk">:         </text><text x="636" y="316" class="mono str">"metrics"</text>
+    <text x="491" y="336" class="mono brk">    </text><text x="521" y="336" class="mono key">timeout</text><text x="575" y="336" class="mono brk">:         </text><text x="651" y="336" class="mono num">30</text>
+    <text x="491" y="356" class="mono brk">    </text><text x="521" y="356" class="mono key">debug</text><text x="559" y="356" class="mono brk">:         </text><text x="635" y="356" class="mono bool">false</text>
+  </g>
+
+  <!-- ══════════════════════════════════════════════════
+       SLIDE 2 — NORMAL mode, tree pane focused, cursor stepping
+  ════════════════════════════════════════════════════ -->
+  <g id="slide2">
+    <!-- Left pane: gray -->
+    <rect x="2" y="41" width="452" height="517" fill="none" stroke="#30363d" stroke-width="1.5"/>
+    <text x="11"  y="56" class="mono dim">Object Source</text>
+    <text x="398" y="56" class="mono cyan" font-weight="bold"> JSON </text>
+    <!-- Right pane: GREEN (focused) -->
+    <rect x="482" y="41" width="476" height="517" fill="none" stroke="#2ea043" stroke-width="1.5"/>
+    <text x="491" y="56" class="mono mode" fill="#2ea043">Tree View</text>
+    <!-- animated selection rect -->
+    <rect id="tree-sel-rect" x="484" y="61" width="473" height="19" fill="#1f3a5f"/>
+    <!-- Tree rows -->
+    <text x="491" y="76"  class="mono brk">▼ </text><text x="506" y="76"  class="mono dim">(root)</text><text x="554" y="76" class="mono brk">            {</text><text x="652" y="76" class="mono hint">  (7 keys)</text>
+    <text x="491" y="96"  class="mono brk">    </text><text x="521" y="96"  class="mono key">name</text><text x="551" y="96"  class="mono brk">:             </text><text x="655" y="96"  class="mono str">"my-api"</text>
+    <text x="491" y="116" class="mono brk">    </text><text x="521" y="116" class="mono key">version</text><text x="575" y="116" class="mono brk">:          </text><text x="651" y="116" class="mono str">"2.1.0"</text>
+    <text x="491" y="136" class="mono brk">    </text><text x="521" y="136" class="mono key">description</text><text x="607" y="136" class="mono brk">:     </text><text x="645" y="136" class="mono str">"REST API"</text>
+    <text x="491" y="156" class="mono brk">  ▼ </text><text x="521" y="156" class="mono key">database</text><text x="583" y="156" class="mono brk">:         {</text><text x="658" y="156" class="mono hint">  (4 keys)</text>
+    <text x="491" y="176" class="mono brk">      </text><text x="537" y="176" class="mono key">host</text><text x="567" y="176" class="mono brk">:         </text><text x="643" y="176" class="mono str">"localhost"</text>
+    <text x="491" y="196" class="mono brk">      </text><text x="537" y="196" class="mono key">port</text><text x="567" y="196" class="mono brk">:         </text><text x="643" y="196" class="mono num">5432</text>
+    <text x="491" y="216" class="mono brk">      </text><text x="537" y="216" class="mono key">ssl</text><text x="560" y="216" class="mono brk">:         </text><text x="636" y="216" class="mono bool">true</text>
+    <text x="491" y="236" class="mono brk">      </text><text x="537" y="236" class="mono key">pool</text><text x="567" y="236" class="mono brk">:         </text><text x="643" y="236" class="mono num">10</text>
+    <text x="491" y="256" class="mono brk">  ▼ </text><text x="521" y="256" class="mono key">features</text><text x="583" y="256" class="mono brk">:         [</text><text x="658" y="256" class="mono hint">  (3 items)</text>
+    <text x="491" y="276" class="mono brk">      </text><text x="537" y="276" class="mono num">[0]</text><text x="560" y="276" class="mono brk">:         </text><text x="636" y="276" class="mono str">"auth"</text>
+    <text x="491" y="296" class="mono brk">      </text><text x="537" y="296" class="mono num">[1]</text><text x="560" y="296" class="mono brk">:         </text><text x="636" y="296" class="mono str">"cache"</text>
+    <text x="491" y="316" class="mono brk">      </text><text x="537" y="316" class="mono num">[2]</text><text x="560" y="316" class="mono brk">:         </text><text x="636" y="316" class="mono str">"metrics"</text>
+    <text x="491" y="336" class="mono brk">    </text><text x="521" y="336" class="mono key">timeout</text><text x="575" y="336" class="mono brk">:         </text><text x="651" y="336" class="mono num">30</text>
+    <text x="491" y="356" class="mono brk">    </text><text x="521" y="356" class="mono key">debug</text><text x="559" y="356" class="mono brk">:         </text><text x="635" y="356" class="mono bool">false</text>
+    <!-- Status bar -->
+    <rect x="0" y="558" width="960" height="22" fill="#161b22"/>
+    <text x="4" y="574" class="mono mode">[NORMAL]</text>
+    <text x="76" y="574" class="mono text">  data/config.json</text>
+    <text x="955" y="574" class="mono dim" text-anchor="end">↑↓:move  Space:toggle  Enter:edit  a:add  d:del  r:rename  /:search  Tab:switch</text>
+  </g>
+
+  <!-- ══════════════════════════════════════════════════
+       SLIDE 3 — SEARCH mode, typing "host"
+  ════════════════════════════════════════════════════ -->
+  <g id="slide3">
+    <rect x="2"   y="41" width="452" height="517" fill="none" stroke="#30363d" stroke-width="1.5"/>
+    <text x="11"  y="56" class="mono dim">Object Source</text>
+    <text x="398" y="56" class="mono cyan" font-weight="bold"> JSON </text>
+    <rect x="482" y="41" width="476" height="517" fill="none" stroke="#2ea043" stroke-width="1.5"/>
+    <text x="491" y="56" class="mono mode" fill="#2ea043">Tree View</text>
+
+    <!-- tree with matches highlighted -->
+    <text x="491" y="76"  class="mono brk" opacity="0.4">▼ </text><text x="506" y="76"  class="mono dim" opacity="0.4">(root)</text><text x="554" y="76" class="mono brk" opacity="0.4">            {</text>
+    <text x="491" y="96"  class="mono brk" opacity="0.4">    </text><text x="521" y="96"  class="mono key" opacity="0.4">name</text><text x="551" y="96"  class="mono brk" opacity="0.4">:             </text><text x="655" y="96"  class="mono str" opacity="0.4">"my-api"</text>
+    <text x="491" y="116" class="mono brk" opacity="0.4">    </text><text x="521" y="116" class="mono key" opacity="0.4">version</text><text x="575" y="116" class="mono brk" opacity="0.4">:          </text><text x="651" y="116" class="mono str" opacity="0.4">"2.1.0"</text>
+    <text x="491" y="136" class="mono brk" opacity="0.4">    </text><text x="521" y="136" class="mono key" opacity="0.4">description</text><text x="607" y="136" class="mono brk" opacity="0.4">:     </text><text x="645" y="136" class="mono str" opacity="0.4">"REST API"</text>
+
+    <!-- database: match -->
+    <rect x="484" y="141" width="473" height="19" fill="#1f2d0f"/>
+    <text x="491" y="156" class="mono brk">  ▼ </text><text x="521" y="156" class="mono match">database</text><text x="583" y="156" class="mono brk">:         {</text><text x="658" y="156" class="mono hint">  (4 keys)</text>
+
+    <!-- host: match -->
+    <rect x="484" y="161" width="473" height="19" fill="#1f2d0f"/>
+    <text x="491" y="176" class="mono brk">      </text><text x="537" y="176" class="mono match">host</text><text x="567" y="176" class="mono brk">:         </text><text x="643" y="176" class="mono str">"localhost"</text>
+
+    <text x="491" y="196" class="mono brk" opacity="0.4">      </text><text x="537" y="196" class="mono key" opacity="0.4">port</text><text x="567" y="196" class="mono brk" opacity="0.4">:         </text><text x="643" y="196" class="mono num" opacity="0.4">5432</text>
+    <text x="491" y="216" class="mono brk" opacity="0.4">      </text><text x="537" y="216" class="mono key" opacity="0.4">ssl</text><text x="560" y="216" class="mono brk" opacity="0.4">:         </text><text x="636" y="216" class="mono bool" opacity="0.4">true</text>
+    <text x="491" y="236" class="mono brk" opacity="0.4">      </text><text x="537" y="236" class="mono key" opacity="0.4">pool</text><text x="567" y="236" class="mono brk" opacity="0.4">:         </text><text x="643" y="236" class="mono num" opacity="0.4">10</text>
+    <text x="491" y="256" class="mono brk" opacity="0.4">  ▼ </text><text x="521" y="256" class="mono key" opacity="0.4">features</text><text x="583" y="256" class="mono brk" opacity="0.4">:         [</text>
+    <text x="491" y="276" class="mono brk" opacity="0.4">      </text><text x="537" y="276" class="mono num" opacity="0.4">[0]</text><text x="560" y="276" class="mono brk" opacity="0.4">:         </text><text x="636" y="276" class="mono str" opacity="0.4">"auth"</text>
+    <text x="491" y="296" class="mono brk" opacity="0.4">      </text><text x="537" y="296" class="mono num" opacity="0.4">[1]</text><text x="560" y="296" class="mono brk" opacity="0.4">:         </text><text x="636" y="296" class="mono str" opacity="0.4">"cache"</text>
+    <text x="491" y="316" class="mono brk" opacity="0.4">      </text><text x="537" y="316" class="mono num" opacity="0.4">[2]</text><text x="560" y="316" class="mono brk" opacity="0.4">:         </text><text x="636" y="316" class="mono str" opacity="0.4">"metrics"</text>
+    <text x="491" y="336" class="mono brk" opacity="0.4">    </text><text x="521" y="336" class="mono key" opacity="0.4">timeout</text>
+    <text x="491" y="356" class="mono brk" opacity="0.4">    </text><text x="521" y="356" class="mono key" opacity="0.4">debug</text>
+
+    <!-- Status bar: SEARCH -->
+    <rect x="0" y="558" width="960" height="22" fill="#161b22"/>
+    <text x="4"   y="574" class="mono mode">[SEARCH]</text>
+    <text x="80"  y="574" class="mono text">  Search: </text>
+    <text id="ch-h" x="148" y="574" class="mono text">h</text>
+    <text id="ch-o" x="156" y="574" class="mono text">o</text>
+    <text id="ch-s" x="164" y="574" class="mono text">s</text>
+    <text id="ch-t" x="172" y="574" class="mono text">t</text>
+    <text x="182" y="574" class="mono text cursor">_</text>
+    <text x="230" y="574" class="mono match">  2 matches</text>
+    <text x="955" y="574" class="mono dim" text-anchor="end">↑↓:navigate  Enter:jump  Ctrl+R:replace  Esc:cancel</text>
+  </g>
+
+  <!-- ══════════════════════════════════════════════════
+       SLIDE 4 — INSERT mode, editing port value
+  ════════════════════════════════════════════════════ -->
+  <g id="slide4">
+    <rect x="2"   y="41" width="452" height="517" fill="none" stroke="#2ea043" stroke-width="1.5"/>
+    <text x="11"  y="56" class="mono mode" fill="#2ea043">Object Source</text>
+    <text x="398" y="56" class="mono cyan" font-weight="bold"> JSON </text>
+    <rect x="482" y="41" width="476" height="517" fill="none" stroke="#30363d" stroke-width="1.5"/>
+    <text x="491" y="56" class="mono dim">Tree View</text>
+
+    <!-- Highlight current edit line -->
+    <rect x="3" y="182" width="450" height="17" fill="#0f2d4a"/>
+    <!-- Cursor block after "5" -->
+    <rect x="129" y="183" width="8" height="14" fill="#e6edf3" opacity="0.85">
+      <animate attributeName="opacity" values="0.85;0;0.85" dur="1s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Status bar: INSERT mode + unsaved indicator -->
+    <rect x="0" y="558" width="960" height="22" fill="#161b22"/>
+    <text x="4"  y="574" class="mono mode">[INSERT]</text>
+    <text x="76" y="574" class="mono text">  data/config.json </text>
+    <text x="230" y="574" class="mono text">*</text>
+    <text x="955" y="574" class="mono dim" text-anchor="end">Esc:normal  Ctrl+Z:undo  Ctrl+Y:redo  Ctrl+S:save</text>
+
+    <!-- Tree pane mirrors updated value -->
+    <text x="491" y="76"  class="mono brk">▼ </text><text x="506" y="76"  class="mono dim">(root)</text><text x="554" y="76" class="mono brk">            {</text><text x="652" y="76" class="mono hint">  (7 keys)</text>
+    <text x="491" y="96"  class="mono brk">    </text><text x="521" y="96"  class="mono key">name</text><text x="551" y="96"  class="mono brk">:             </text><text x="655" y="96"  class="mono str">"my-api"</text>
+    <text x="491" y="116" class="mono brk">    </text><text x="521" y="116" class="mono key">version</text><text x="575" y="116" class="mono brk">:          </text><text x="651" y="116" class="mono str">"2.1.0"</text>
+    <text x="491" y="136" class="mono brk">    </text><text x="521" y="136" class="mono key">description</text><text x="607" y="136" class="mono brk">:     </text><text x="645" y="136" class="mono str">"REST API"</text>
+    <text x="491" y="156" class="mono brk">  ▼ </text><text x="521" y="156" class="mono key">database</text><text x="583" y="156" class="mono brk">:         {</text><text x="658" y="156" class="mono hint">  (4 keys)</text>
+    <text x="491" y="176" class="mono brk">      </text><text x="537" y="176" class="mono key">host</text><text x="567" y="176" class="mono brk">:         </text><text x="643" y="176" class="mono str">"localhost"</text>
+    <!-- port row highlighted in tree too (live sync) -->
+    <rect x="484" y="181" width="473" height="19" fill="#0f2d4a" opacity="0.5"/>
+    <text x="491" y="196" class="mono brk">      </text><text x="537" y="196" class="mono key">port</text><text x="567" y="196" class="mono brk">:         </text><text x="643" y="196" class="mono num">54325</text>
+    <text x="491" y="216" class="mono brk">      </text><text x="537" y="216" class="mono key">ssl</text><text x="560" y="216" class="mono brk">:         </text><text x="636" y="216" class="mono bool">true</text>
+    <text x="491" y="236" class="mono brk">      </text><text x="537" y="236" class="mono key">pool</text><text x="567" y="236" class="mono brk">:         </text><text x="643" y="236" class="mono num">10</text>
+    <text x="491" y="256" class="mono brk">  ▼ </text><text x="521" y="256" class="mono key">features</text><text x="583" y="256" class="mono brk">:         [</text><text x="658" y="256" class="mono hint">  (3 items)</text>
+    <text x="491" y="276" class="mono brk">      </text><text x="537" y="276" class="mono num">[0]</text><text x="560" y="276" class="mono brk">:         </text><text x="636" y="276" class="mono str">"auth"</text>
+    <text x="491" y="296" class="mono brk">      </text><text x="537" y="296" class="mono num">[1]</text><text x="560" y="296" class="mono brk">:         </text><text x="636" y="296" class="mono str">"cache"</text>
+    <text x="491" y="316" class="mono brk">      </text><text x="537" y="316" class="mono num">[2]</text><text x="560" y="316" class="mono brk">:         </text><text x="636" y="316" class="mono str">"metrics"</text>
+    <text x="491" y="336" class="mono brk">    </text><text x="521" y="336" class="mono key">timeout</text><text x="575" y="336" class="mono brk">:         </text><text x="651" y="336" class="mono num">30</text>
+    <text x="491" y="356" class="mono brk">    </text><text x="521" y="356" class="mono key">debug</text><text x="559" y="356" class="mono brk">:         </text><text x="635" y="356" class="mono bool">false</text>
+  </g>
+</svg>
