@@ -258,9 +258,9 @@ fn path_segments(path: &str) -> Vec<String> {
 
 // ── YAML codec ────────────────────────────────────────────────────────────────
 
-/// Convert a `serde_yaml::Value` tree to `serde_json::Value`.
+/// Convert a `serde_yaml_ng::Value` tree to `serde_json::Value`.
 ///
-/// Direct `serde_yaml::from_str::<serde_json::Value>()` fails for any YAML
+/// Direct `serde_yaml_ng::from_str::<serde_json::Value>()` fails for any YAML
 /// that contains:
 ///   * **Tagged values** — e.g. CloudFormation `!Ref`, `!Sub`, `!If` etc.
 ///     serde_yaml parses these as enum variants; serde_json::Value has no
@@ -268,16 +268,16 @@ fn path_segments(path: &str) -> Vec<String> {
 ///   * **Non-string mapping keys** — YAML allows integer / boolean keys;
 ///     JSON requires strings.
 ///
-/// This two-step approach parses to `serde_yaml::Value` first (which accepts
+/// This two-step approach parses to `serde_yaml_ng::Value` first (which accepts
 /// everything), then converts with the rules below:
 ///   * `!Tag scalar`   → `{ "!Tag": scalar }`   (CloudFormation convention)
 ///   * `!Tag sequence` → `{ "!Tag": [...] }`
 ///   * Non-string key  → `key.to_string()`
-fn yaml_to_json(y: serde_yaml::Value) -> Value {
+fn yaml_to_json(y: serde_yaml_ng::Value) -> Value {
     match y {
-        serde_yaml::Value::Null => Value::Null,
-        serde_yaml::Value::Bool(b) => Value::Bool(b),
-        serde_yaml::Value::Number(n) => {
+        serde_yaml_ng::Value::Null => Value::Null,
+        serde_yaml_ng::Value::Bool(b) => Value::Bool(b),
+        serde_yaml_ng::Value::Number(n) => {
             // Prefer integer representation; fall back to float; fall back to string.
             if let Some(i) = n.as_i64() {
                 serde_json::json!(i)
@@ -291,26 +291,26 @@ fn yaml_to_json(y: serde_yaml::Value) -> Value {
                 Value::String(n.to_string())
             }
         }
-        serde_yaml::Value::String(s) => Value::String(s),
-        serde_yaml::Value::Sequence(seq) => {
+        serde_yaml_ng::Value::String(s) => Value::String(s),
+        serde_yaml_ng::Value::Sequence(seq) => {
             Value::Array(seq.into_iter().map(yaml_to_json).collect())
         }
-        serde_yaml::Value::Mapping(map) => {
+        serde_yaml_ng::Value::Mapping(map) => {
             let mut obj = serde_json::Map::new();
             for (k, v) in map {
                 // Coerce non-string keys to their string representation.
                 let key = match k {
-                    serde_yaml::Value::String(s) => s,
-                    serde_yaml::Value::Number(n) => n.to_string(),
-                    serde_yaml::Value::Bool(b) => b.to_string(),
-                    serde_yaml::Value::Null => "null".to_string(),
+                    serde_yaml_ng::Value::String(s) => s,
+                    serde_yaml_ng::Value::Number(n) => n.to_string(),
+                    serde_yaml_ng::Value::Bool(b) => b.to_string(),
+                    serde_yaml_ng::Value::Null => "null".to_string(),
                     other => format!("{other:?}"),
                 };
                 obj.insert(key, yaml_to_json(v));
             }
             Value::Object(obj)
         }
-        serde_yaml::Value::Tagged(tagged) => {
+        serde_yaml_ng::Value::Tagged(tagged) => {
             // Represent `!Tag value` as `{ "!Tag": value }` so the tag is
             // preserved in the tree pane and survives a round-trip back to YAML.
             let tag = tagged.tag.to_string();
@@ -321,16 +321,16 @@ fn yaml_to_json(y: serde_yaml::Value) -> Value {
 }
 
 fn parse_yaml(raw: &str) -> Result<Value, String> {
-    // Always go through serde_yaml::Value so that YAML tags (!Ref, !Sub, …)
+    // Always go through serde_yaml_ng::Value so that YAML tags (!Ref, !Sub, …)
     // and non-string keys are handled rather than causing a deserialisation
     // error when mapping to serde_json::Value.
-    let y: serde_yaml::Value =
-        serde_yaml::from_str(raw).map_err(|e| format!("YAML error: {}", e))?;
+    let y: serde_yaml_ng::Value =
+        serde_yaml_ng::from_str(raw).map_err(|e| format!("YAML error: {}", e))?;
     Ok(yaml_to_json(y))
 }
 
 fn serialize_yaml(value: &Value) -> String {
-    serde_yaml::to_string(value)
+    serde_yaml_ng::to_string(value)
         .unwrap_or_else(|e| format!("# serialization error: {}", e))
 }
 
