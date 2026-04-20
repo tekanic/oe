@@ -1,8 +1,8 @@
 <div align="center">
 
-# oe — Object Editor
+<img src="assets/logo.svg" alt="roe — Rust Object Editor" width="560"/>
 
-**A dual-pane terminal editor for structured data, built with Rust + Ratatui.**
+<br/>
 
 ![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange?logo=rust&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -13,7 +13,7 @@
 
 <br/>
 
-![oe animated demo](assets/demo-animated.svg)
+![roe animated demo](assets/demo-animated.svg)
 
 *Normal mode → Tree navigation → Live search → Insert mode with bidirectional sync*
 
@@ -23,7 +23,7 @@
 
 ## What it is
 
-`oe` opens any JSON, YAML, TOML, or XML file and presents it in two synchronized panes side by side: the raw text on the left (fully editable), and a collapsible tree navigator on the right. Editing either pane immediately updates the other.
+`roe` opens any JSON, YAML, TOML, or XML file and presents it in two synchronized panes side by side: the raw text on the left (fully editable), and a collapsible tree navigator on the right. Editing either pane immediately updates the other.
 
 The center strip is a unified scrollbar that moves both panes simultaneously.
 
@@ -110,19 +110,19 @@ automatically by Cargo during the build.
 ### Clone and build
 
 ```bash
-git clone https://github.com/your-username/JSON-Editor.git
-cd JSON-Editor
+git clone https://github.com/tekanic/roe.git
+cd roe
 
 # Release build (optimised, ~2–3 MB binary)
 cargo build --release
 ```
 
-The compiled binary lands at `target/release/oe`.
+The compiled binary lands at `target/release/roe`.
 
 ### Run without installing
 
 ```bash
-./target/release/oe path/to/file.json
+./target/release/roe path/to/file.json
 ```
 
 ### Install system-wide (optional)
@@ -133,7 +133,7 @@ The compiled binary lands at `target/release/oe`.
 cargo install --path .
 
 # Then run from anywhere
-oe path/to/file.json
+roe path/to/file.json
 ```
 
 ### Development build (faster compile, slower runtime)
@@ -147,13 +147,13 @@ cargo run -- path/to/file.json
 ## Usage
 
 ```bash
-oe path/to/file.json    # open a JSON file
-oe data.yaml            # open a YAML file
-oe config.toml          # open a TOML file
-oe                      # start with an empty document
+roe path/to/file.json    # open a JSON file
+roe data.yaml            # open a YAML file
+roe config.toml          # open a TOML file
+roe                      # start with an empty document
 ```
 
-`oe` opens in your terminal and takes over the full screen. Press `Ctrl+Q` to
+`roe` opens in your terminal and takes over the full screen. Press `Ctrl+Q` to
 quit at any time.
 
 ### The two panes
