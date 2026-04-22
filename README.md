@@ -1,8 +1,8 @@
 <div align="center">
 
-# roe — Object Editor
+<img src="assets/logo.svg" alt="roe — Rust Object Editor" width="560"/>
 
-**A dual-pane terminal editor for structured data, built with Rust + Ratatui.**
+<br/>
 
 ![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange?logo=rust&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-blue)
