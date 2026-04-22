@@ -1,5 +1,5 @@
 [package]
-name = "oe"
+name = "roe"
 version = "0.1.0"
 edition = "2021"
 description = "Dual-pane TUI editor for structured data (JSON, YAML, TOML, XML)"
@@ -7,7 +7,7 @@ authors = []
 license = "MIT"
 
 [[bin]]
-name = "oe"
+name = "roe"
 path = "src/main.rs"
 
 [dependencies]

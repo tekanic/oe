@@ -1,10 +1,10 @@
-//! `oe` — OE Object Editor, a dual-pane TUI editor for structured data.
+//! `roe` — ROE Object Editor, a dual-pane TUI editor for structured data.
 //!
 //! Entry point: sets up the terminal, runs the event loop, and tears
 //! everything down cleanly on exit or panic.
 //!
 //! Usage:
-//!   oe [path/to/file.json|yaml|toml|xml]
+//!   roe [path/to/file.json|yaml|toml|xml]
 
 mod events;
 mod format;

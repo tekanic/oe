@@ -628,22 +628,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "oe"
-version = "0.1.0"
-dependencies = [
- "arboard",
- "color-eyre",
- "crossterm",
- "ratatui",
- "roxmltree",
- "serde",
- "serde_json",
- "serde_yaml",
- "toml",
- "tui-textarea",
-]
-
-[[package]]
 name = "once_cell"
 version = "1.21.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -767,6 +751,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ed2bf2547551a7053d6fdfafda3f938979645c44812fbfcda098faae3f1a362d"
 dependencies = [
  "bitflags",
+]
+
+[[package]]
+name = "roe"
+version = "0.1.0"
+dependencies = [
+ "arboard",
+ "color-eyre",
+ "crossterm",
+ "ratatui",
+ "roxmltree",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "toml",
+ "tui-textarea",
 ]
 
 [[package]]

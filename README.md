@@ -1,6 +1,6 @@
 <div align="center">
 
-# oe — Object Editor
+# roe — Object Editor
 
 **A dual-pane terminal editor for structured data, built with Rust + Ratatui.**
 
@@ -13,9 +13,9 @@
 
 <br/>
 
-![oe animated demo](assets/demo-animated.svg)
+![roe animated demo](assets/demo-animated.svg)
 
-*Normal mode → Tree navigation → Live search → Insert mode with bidirectional sync*
+_Normal mode → Tree navigation → Live search → Insert mode with bidirectional sync_
 
 </div>
 
@@ -23,7 +23,7 @@
 
 ## What it is
 
-`oe` opens any JSON, YAML, TOML, or XML file and presents it in two synchronized panes side by side: the raw text on the left (fully editable), and a collapsible tree navigator on the right. Editing either pane immediately updates the other.
+`roe` opens any JSON, YAML, TOML, or XML file and presents it in two synchronized panes side by side: the raw text on the left (fully editable), and a collapsible tree navigator on the right. Editing either pane immediately updates the other.
 
 The center strip is a unified scrollbar that moves both panes simultaneously.
 
@@ -82,7 +82,7 @@ Esc:normal  Ctrl+Z:undo  Ctrl+S:save
 
 ## Prerequisites
 
-**Rust toolchain** — `oe` is written in Rust and compiled from source. If you
+**Rust toolchain** — `roe` is written in Rust and compiled from source. If you
 don't have Rust installed:
 
 ```bash
@@ -110,19 +110,19 @@ automatically by Cargo during the build.
 ### Clone and build
 
 ```bash
-git clone https://github.com/tekanic/oe.git
-cd oe
+git clone https://github.com/tekanic/roe.git
+cd roe
 
 # Release build (optimised, ~2–3 MB binary)
 cargo build --release
 ```
 
-The compiled binary lands at `target/release/oe`.
+The compiled binary lands at `target/release/roe`.
 
 ### Run without installing
 
 ```bash
-./target/release/oe path/to/file.json
+./target/release/roe path/to/file.json
 ```
 
 ### Install system-wide (optional)
@@ -133,7 +133,7 @@ The compiled binary lands at `target/release/oe`.
 cargo install --path .
 
 # Then run from anywhere
-oe path/to/file.json
+roe path/to/file.json
 ```
 
 ### Development build (faster compile, slower runtime)
@@ -147,21 +147,21 @@ cargo run -- path/to/file.json
 ## Usage
 
 ```bash
-oe path/to/file.json    # open a JSON file
-oe data.yaml            # open a YAML file
-oe config.toml          # open a TOML file
-oe                      # start with an empty document
+roe path/to/file.json    # open a JSON file
+roe data.yaml            # open a YAML file
+roe config.toml          # open a TOML file
+roe                      # start with an empty document
 ```
 
-`oe` opens in your terminal and takes over the full screen. Press `Ctrl+Q` to
+`roe` opens in your terminal and takes over the full screen. Press `Ctrl+Q` to
 quit at any time.
 
 ### The two panes
 
-| Pane | Name | What it shows |
-|------|------|---------------|
-| Left | **Object Source** | The raw file text — fully editable |
-| Right | **Tree View** | A navigable, collapsible tree of the parsed structure |
+| Pane  | Name              | What it shows                                         |
+| ----- | ----------------- | ----------------------------------------------------- |
+| Left  | **Object Source** | The raw file text — fully editable                    |
+| Right | **Tree View**     | A navigable, collapsible tree of the parsed structure |
 
 Use `Tab` to move keyboard focus between them. The active pane has a **green
 border**; the inactive pane is dimmed.
@@ -191,7 +191,7 @@ The single line at the bottom of the screen shows:
 - **`[MODE]`** — current interaction mode (`NORMAL`, `INSERT`, `SEARCH`, etc.)
 - **filename** + **`*`** — open file and unsaved-changes indicator
 - **`⚠ …`** — parse error if the raw text is not valid (press `Ctrl+E` to jump
-to the error line)
+  to the error line)
 - **hint text** — context-sensitive key reminders for the current mode
 
 Files are auto-detected by extension. On open, the document is parsed and
@@ -204,47 +204,47 @@ all supported formats automatically.
 
 ### Global (any mode)
 
-| Key        | Action                                      |
-|------------|---------------------------------------------|
-| `Ctrl+S`   | Save to disk (prompts for filename if new)  |
-| `Ctrl+O`   | Open file picker                            |
-| `Ctrl+Q`   | Quit (prompts if unsaved changes)           |
-| `Ctrl+Z`   | Undo                                        |
-| `Ctrl+Y`   | Redo                                        |
-| `Ctrl+V`   | Paste from clipboard                        |
-| `Ctrl+E`   | Jump raw pane cursor to parse error line    |
-| `Tab`      | Switch focus between panes                  |
-| `?`        | Toggle About / keybindings overlay          |
+| Key      | Action                                     |
+| -------- | ------------------------------------------ |
+| `Ctrl+S` | Save to disk (prompts for filename if new) |
+| `Ctrl+O` | Open file picker                           |
+| `Ctrl+Q` | Quit (prompts if unsaved changes)          |
+| `Ctrl+Z` | Undo                                       |
+| `Ctrl+Y` | Redo                                       |
+| `Ctrl+V` | Paste from clipboard                       |
+| `Ctrl+E` | Jump raw pane cursor to parse error line   |
+| `Tab`    | Switch focus between panes                 |
+| `?`      | Toggle About / keybindings overlay         |
 
 ---
 
 ### Normal Mode — Raw Pane Focused
 
-| Key                | Action                                            |
-|--------------------|---------------------------------------------------|
-| `i`                | Enter Insert mode                                 |
-| Any printable key  | Enter Insert mode and start typing                |
-| Double-click word  | Select word and enter Insert mode                 |
+| Key               | Action                             |
+| ----------------- | ---------------------------------- |
+| `i`               | Enter Insert mode                  |
+| Any printable key | Enter Insert mode and start typing |
+| Double-click word | Select word and enter Insert mode  |
 
 ---
 
 ### Normal Mode — Tree Pane Focused
 
-| Key                     | Action                                          |
-|-------------------------|-------------------------------------------------|
-| `↑` / `k`               | Move cursor up one row                          |
-| `↓` / `j`               | Move cursor down one row                        |
-| `PgUp`                  | Move cursor up one page                         |
-| `PgDn`                  | Move cursor down one page                       |
-| `Home` / `g`            | Jump to first node                              |
-| `End` / `G`             | Jump to last node                               |
-| `Space` / `←` / `→`    | Toggle collapse / expand container              |
-| `Enter`                 | Edit leaf value, or toggle container            |
-| `a`                     | Add new key / array item                        |
-| `d`                     | Delete selected node (confirm required)         |
-| `r`                     | Rename selected key                             |
-| `c`                     | Copy node value to clipboard                    |
-| `/`                     | Open search / filter bar                        |
+| Key                 | Action                                  |
+| ------------------- | --------------------------------------- |
+| `↑` / `k`           | Move cursor up one row                  |
+| `↓` / `j`           | Move cursor down one row                |
+| `PgUp`              | Move cursor up one page                 |
+| `PgDn`              | Move cursor down one page               |
+| `Home` / `g`        | Jump to first node                      |
+| `End` / `G`         | Jump to last node                       |
+| `Space` / `←` / `→` | Toggle collapse / expand container      |
+| `Enter`             | Edit leaf value, or toggle container    |
+| `a`                 | Add new key / array item                |
+| `d`                 | Delete selected node (confirm required) |
+| `r`                 | Rename selected key                     |
+| `c`                 | Copy node value to clipboard            |
+| `/`                 | Open search / filter bar                |
 
 Tree navigation syncs the raw pane cursor to the corresponding line.
 
@@ -252,12 +252,12 @@ Tree navigation syncs the raw pane cursor to the corresponding line.
 
 ### Insert Mode (raw pane editing)
 
-| Key             | Action                                          |
-|-----------------|-------------------------------------------------|
-| `Esc`           | Return to Normal mode                           |
-| `Ctrl+Z`        | Undo                                            |
-| `Ctrl+Y`        | Redo                                            |
-| All other keys  | Standard text editing (arrows, backspace, etc.) |
+| Key            | Action                                          |
+| -------------- | ----------------------------------------------- |
+| `Esc`          | Return to Normal mode                           |
+| `Ctrl+Z`       | Undo                                            |
+| `Ctrl+Y`       | Redo                                            |
+| All other keys | Standard text editing (arrows, backspace, etc.) |
 
 The raw pane re-parses after 250 ms of inactivity. If valid, the tree
 updates immediately. If invalid, the last good tree is preserved and a
@@ -267,12 +267,12 @@ parse error appears in the status bar.
 
 ### Tree Edit Mode (add / rename / edit value)
 
-| Key         | Action                          |
-|-------------|---------------------------------|
-| `Enter`     | Confirm the edit                |
-| `Esc`       | Cancel                          |
-| `Backspace` | Delete last character           |
-| Any char    | Append to the input buffer      |
+| Key         | Action                     |
+| ----------- | -------------------------- |
+| `Enter`     | Confirm the edit           |
+| `Esc`       | Cancel                     |
+| `Backspace` | Delete last character      |
+| Any char    | Append to the input buffer |
 
 Value input is first parsed as JSON; if it fails, the text is stored as a
 plain string.
@@ -281,43 +281,43 @@ plain string.
 
 ### Search Mode (`/`)
 
-| Key         | Action                                        |
-|-------------|-----------------------------------------------|
-| Type        | Live-filter tree to matching keys / values    |
-| `Enter`     | Jump to first match and return to Normal mode |
-| `Ctrl+R`    | Switch to Replace mode                        |
-| `Esc`       | Clear filter and return to Normal mode        |
+| Key      | Action                                        |
+| -------- | --------------------------------------------- |
+| Type     | Live-filter tree to matching keys / values    |
+| `Enter`  | Jump to first match and return to Normal mode |
+| `Ctrl+R` | Switch to Replace mode                        |
+| `Esc`    | Clear filter and return to Normal mode        |
 
 ---
 
 ### Replace Mode (`Ctrl+R` from Search)
 
-| Key         | Action                                        |
-|-------------|-----------------------------------------------|
-| Type        | Build replacement string                      |
-| `Enter`     | Replace current match and advance             |
-| `Ctrl+A`    | Replace all matches at once                   |
-| `Esc`       | Return to Search mode                         |
+| Key      | Action                            |
+| -------- | --------------------------------- |
+| Type     | Build replacement string          |
+| `Enter`  | Replace current match and advance |
+| `Ctrl+A` | Replace all matches at once       |
+| `Esc`    | Return to Search mode             |
 
 ---
 
 ### Confirm Mode
 
-| Key       | Action           |
-|-----------|------------------|
-| `y` / `Y` | Confirm action   |
-| Any other | Cancel           |
+| Key       | Action         |
+| --------- | -------------- |
+| `y` / `Y` | Confirm action |
+| Any other | Cancel         |
 
 ---
 
 ### Save As Mode (`Ctrl+S` with no file open)
 
-| Key         | Action                                              |
-|-------------|-----------------------------------------------------|
-| Type        | Build filename                                      |
-| `Enter`     | Save (format extension auto-appended if omitted)    |
-| `Esc`       | Cancel                                              |
-| `Backspace` | Delete last character                               |
+| Key         | Action                                           |
+| ----------- | ------------------------------------------------ |
+| Type        | Build filename                                   |
+| `Enter`     | Save (format extension auto-appended if omitted) |
+| `Esc`       | Cancel                                           |
+| `Backspace` | Delete last character                            |
 
 ---
 
@@ -327,14 +327,14 @@ A centered overlay for browsing the filesystem. Directories and supported
 files (`.json`, `.yaml`, `.toml`, `.xml`) are listed; hidden files are
 excluded.
 
-| Key           | Action                                          |
-|---------------|-------------------------------------------------|
-| `↑` / `k`     | Move selection up                               |
-| `↓` / `j`     | Move selection down                             |
-| `PgUp`        | Jump up one page                                |
-| `PgDn`        | Jump down one page                              |
-| `Enter`       | Enter directory or open highlighted file        |
-| `Esc`         | Close picker without opening                    |
+| Key       | Action                                   |
+| --------- | ---------------------------------------- |
+| `↑` / `k` | Move selection up                        |
+| `↓` / `j` | Move selection down                      |
+| `PgUp`    | Jump up one page                         |
+| `PgDn`    | Jump down one page                       |
+| `Enter`   | Enter directory or open highlighted file |
+| `Esc`     | Close picker without opening             |
 
 If there are unsaved changes, a confirmation prompt appears before
 discarding them.
@@ -343,17 +343,17 @@ discarding them.
 
 ## Mouse Support
 
-| Action                              | Result                                           |
-|-------------------------------------|--------------------------------------------------|
-| Click in raw pane                   | Move cursor; tree scrolls to matching node       |
-| Double-click word in raw pane       | Select word, enter Insert mode                   |
-| Click in tree pane                  | Select node; raw pane cursor follows             |
-| Double-click node in tree pane      | Edit leaf / toggle container                     |
-| Click `▶` / `▼` indicator           | Toggle collapse without changing selection       |
-| Scroll wheel                        | Scrolls the **focused** pane only                |
-| Click / drag center scrollbar       | Seeks both panes to the proportional position    |
-| Right-click                         | Transfer focus to the clicked pane               |
-| Click outside file picker           | Dismiss picker                                   |
+| Action                         | Result                                        |
+| ------------------------------ | --------------------------------------------- |
+| Click in raw pane              | Move cursor; tree scrolls to matching node    |
+| Double-click word in raw pane  | Select word, enter Insert mode                |
+| Click in tree pane             | Select node; raw pane cursor follows          |
+| Double-click node in tree pane | Edit leaf / toggle container                  |
+| Click `▶` / `▼` indicator      | Toggle collapse without changing selection    |
+| Scroll wheel                   | Scrolls the **focused** pane only             |
+| Click / drag center scrollbar  | Seeks both panes to the proportional position |
+| Right-click                    | Transfer focus to the clicked pane            |
+| Click outside file picker      | Dismiss picker                                |
 
 ---
 
@@ -387,15 +387,15 @@ src/
 
 ## Dependencies
 
-| Crate          | Purpose                                  |
-|----------------|------------------------------------------|
-| `ratatui`      | TUI layout and widgets                   |
-| `crossterm`    | Terminal backend, events, mouse support  |
-| `tui-textarea` | Editable text area widget                |
-| `serde_json`   | JSON parsing and serialization           |
-| `serde_yaml`   | YAML parsing and serialization           |
-| `toml`         | TOML parsing and serialization           |
-| `roxmltree`    | XML parsing (read-only)                  |
-| `serde`        | Derive macros for format codecs          |
-| `arboard`      | Clipboard read/write                     |
-| `color-eyre`   | Pretty error reporting                   
+| Crate          | Purpose                                 |
+| -------------- | --------------------------------------- |
+| `ratatui`      | TUI layout and widgets                  |
+| `crossterm`    | Terminal backend, events, mouse support |
+| `tui-textarea` | Editable text area widget               |
+| `serde_json`   | JSON parsing and serialization          |
+| `serde_yaml`   | YAML parsing and serialization          |
+| `toml`         | TOML parsing and serialization          |
+| `roxmltree`    | XML parsing (read-only)                 |
+| `serde`        | Derive macros for format codecs         |
+| `arboard`      | Clipboard read/write                    |
+| `color-eyre`   | Pretty error reporting                  |

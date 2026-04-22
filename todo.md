@@ -1,4 +1,4 @@
-# oe — Object Editor Todo
+# roe — Object Editor Todo
 
 This file tracks all work items, their status, and notes.
 
@@ -153,10 +153,10 @@ This file tracks all work items, their status, and notes.
 
 - [ ] **Persistent collapse state across sessions** — Collapse state survives
   re-parses within a session but is lost on restart. Could write a small
-  sidecar file (e.g. `.filename.oe`) next to the opened file.
+  sidecar file (e.g. `.filename.roe`) next to the opened file.
 
 - [ ] **Config file** — Allow users to customize colors and key bindings via
-  a `~/.config/oe/config.toml` file.
+  a `~/.config/roe/config.toml` file.
 
 ### Low Priority
 

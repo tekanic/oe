@@ -784,7 +784,7 @@ fn draw_about(frame: &mut Frame, screen: Rect) {
         // ── header ──────────────────────────────────────────────────────────
         Line::from(vec![
             Span::styled(
-                "OE",
+                "ROE",
                 Style::default()
                     .fg(Color::Cyan)
                     .add_modifier(Modifier::BOLD),
