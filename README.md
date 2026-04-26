@@ -5,7 +5,7 @@
 <br/>
 
 ![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange?logo=rust&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-blue)
+![License](https://img.shields.io/badge/license-MPL--2.0-blue)
 ![JSON](https://img.shields.io/badge/JSON-%E2%9C%93-brightgreen)
 ![YAML](https://img.shields.io/badge/YAML-%E2%9C%93-yellow)
 ![TOML](https://img.shields.io/badge/TOML-%E2%9C%93-purple)
@@ -399,3 +399,25 @@ src/
 | `serde`        | Derive macros for format codecs         |
 | `arboard`      | Clipboard read/write                    |
 | `color-eyre`   | Pretty error reporting                  |
+
+---
+
+## License
+
+`roe` is licensed under the [Mozilla Public License 2.0](./LICENSE).
+
+The MPL 2.0 is a file-level copyleft license. In short:
+
+- **You can** use `roe` as a dependency in projects under any license, including
+  proprietary ones.
+- **You must** make your modifications to `roe`'s source files available under
+  the MPL 2.0 if you distribute a modified version.
+- **You must** preserve copyright and license notices.
+
+See the [MPL 2.0 FAQ](https://www.mozilla.org/en-US/MPL/2.0/FAQ/) for details.
+
+### Contributing
+
+By submitting a contribution to this project, you agree that your contribution
+is licensed under the MPL 2.0. No separate Contributor License Agreement is
+required.
